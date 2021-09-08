@@ -9,7 +9,9 @@ run curl https://confluence.atlassian.com/doc/files/1077906215/1077916296/2/1629
 run chmod +x workaround-patch.sh
 
 run sed -i -e 's/^INSTALLATION_DIRECTORY=.*$/INSTALLATION_DIRECTORY=\/opt\/atlassian\/confluence/' workaround-patch.sh
-run ./workaround-patch.sh 
+run ./workaround-patch.sh
+
+run cd /opt/atlassian/confluence/confluence && sed -i -e 's/[.]versionNumber"[]][)]<\/li>/.versionNumber"]) – PATCHED<\/li>/' -e 's/[.]versionNumber<\/span>/.versionNumber – PATCHED<\/span>/' decorators/includes/footer-content.vm 
 
 workdir /
 run rm -rf /tmp/patch
